@@ -1,0 +1,15 @@
+# 构建产物
+build/
+dist/
+
+# 调研用参考目录（克隆的 HMCL/HMCLauncher、PoC、nightly jar、JDK），不属于交付物
+_ref/
+
+# 日志
+*.log
+
+# IDE
+.idea/
+*.iml
+.vscode/
+out/
