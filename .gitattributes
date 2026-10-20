@@ -1,0 +1,7 @@
+# 统一换行风格，避免 Windows / WSL 双端协作时整仓“全部被修改”
+# 仓库内一律存 LF，检出也保持 LF（PowerShell 对 LF 脚本没有兼容问题）
+* text=auto eol=lf
+
+# Windows 批处理保留 CRLF：cmd 对 LF-only 脚本的 label/goto 解析有历史坑
+*.bat text eol=crlf
+*.cmd text eol=crlf
