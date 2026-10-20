@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     为 Windows 上的官方 HMCL.exe 安装区域补丁。
 

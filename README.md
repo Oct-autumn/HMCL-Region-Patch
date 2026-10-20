@@ -167,6 +167,15 @@ Linux / macOS：
     └── hmcl-patched.sh         Linux 包装启动脚本
 ```
 
+## Windows 脚本编码
+
+PowerShell 5.1 读取**没有 BOM 的 UTF-8 脚本**时会按系统 ANSI 代码页（中文 Windows 是 GBK）解析，中文会乱码甚至语法报错。因此：
+
+- `build.ps1`、`scripts/*.ps1` 一律保存为 **UTF-8 with BOM**，别用会去掉 BOM 的编辑器保存；
+- `scripts/start-hmcl.bat` 保持**纯 ASCII**（cmd 不支持 BOM，按当前 OEM 代码页解析，中文提示反而容易乱码）。
+
+改脚本后可以用 `file build.ps1` 检查，应显示 `UTF-8 (with BOM) text`。
+
 ## 依赖与许可
 
 - 依赖 [OW2 ASM](https://asm.ow2.io/)（BSD-3-Clause），已 shade 进产物。

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     HMCL Region Patch 构建脚本（Windows PowerShell 5.1+）。
 

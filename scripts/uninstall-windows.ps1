@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     卸载 Windows 上的 HMCL 区域补丁。
 

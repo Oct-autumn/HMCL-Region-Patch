@@ -1,20 +1,21 @@
 @echo off
-chcp 65001 >nul
 rem ============================================================
-rem  备份启动方式：不想修改环境变量时使用本脚本
+rem  Backup launcher: use this if you don't want to change environment variables.
 rem
-rem  用法：
-rem    1. 把 hmcl-region-patch.jar 和本脚本放到 HMCL 所在目录；
-rem    2. 同目录有 HMCL.exe（官方 exe 版）时，双击本脚本即可；
-rem       只有 HMCL.jar（jar 版）时，把 HMCL.jar 也放同目录再双击。
+rem  Usage:
+rem    1. Put hmcl-region-patch.jar and this script into the HMCL folder.
+rem    2. If HMCL.exe (official exe build) is in the same folder, double-click this script.
+rem       For the jar build, put HMCL.jar in the same folder too.
 rem
-rem  注意：本脚本只影响这一次启动，不写任何环境变量。
+rem  Note: this only affects the current launch. Nothing is written to the system.
+rem  This file is intentionally ASCII-only: .bat must not have a BOM and
+rem  cmd.exe parses it with the current OEM code page.
 rem ============================================================
 setlocal
 set "SCRIPT_DIR=%~dp0"
 
 if not exist "%SCRIPT_DIR%hmcl-region-patch.jar" (
-    echo [错误] 找不到 hmcl-region-patch.jar，请和本脚本放在同一目录。
+    echo [ERROR] hmcl-region-patch.jar not found. Put it in the same folder as this script.
     pause
     exit /b 1
 )
@@ -26,11 +27,11 @@ if exist "%SCRIPT_DIR%HMCL.exe" (
 )
 
 if exist "%SCRIPT_DIR%HMCL.jar" (
-    rem jar 版不会读取 HMCL_JAVA_OPTS，需要显式把 -javaagent 传给 java
+    rem The jar build does not read HMCL_JAVA_OPTS, pass -javaagent explicitly.
     start "" javaw -javaagent:"%SCRIPT_DIR%hmcl-region-patch.jar" -jar "%SCRIPT_DIR%HMCL.jar"
     exit /b 0
 )
 
-echo [错误] 同目录既没有 HMCL.exe 也没有 HMCL.jar。
+echo [ERROR] Neither HMCL.exe nor HMCL.jar found in this folder.
 pause
 exit /b 1
